@@ -44,4 +44,5 @@ docker service create --name ps-svc --network ps-over --replicas 2 alpine sleep 
 
 We can then check the services with:
 docker service ps ps-svc
-
+or check the network with
+docker network inspect ps-over
