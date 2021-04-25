@@ -22,3 +22,6 @@ Command line arguments override CMD
 ENTRYPOINT ["<executable>","<parameter>",...]
 The difference between CMD and Entrypoint is that entrypoint is intended to constrain the user. 
 
+So we can do something like
+CMD ["echo","Hello World!"]
+ENTRYPOINT ["sh"]
