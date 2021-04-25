@@ -4,6 +4,12 @@ bridge - Single Host. Uses the kernel linux bridge.
   Note: docker0 is always associated with the default builtin bridge network
   containers on one bridge cannot talk to containers on another bridge.
   
+  If there is an existing network bidge called ps-bridge we can join containers to it like so:
+  docker run -dt --name c1 --network ps-bridge apline:latest
+  
+  If you create a container with a name flag every docker engine has an embedded dns service so they can talk
+  with each other by name. As long as they are on the same network.
+  
 host - 
 none
 
@@ -14,3 +20,6 @@ docker network inspect <network name> lets you see details of the the network.
 You may wish to install bridge-utils with: sudo apt-get bridge-utils This will let you use: brctl show
 
 You can also use docker link show
+
+
+###MULTI HOST NETWORKING###
