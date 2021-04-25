@@ -39,3 +39,9 @@ creates a new overlay network
 Other nodes in the swarm will not see this network until we create a container on that node that
 needs to use it.
 
+For example, if you create a service on the master node like so:
+docker service create --name ps-svc --network ps-over --replicas 2 alpine sleep 1d
+
+We can then check the services with:
+docker service ps ps-svc
+
