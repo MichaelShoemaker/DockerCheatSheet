@@ -1,6 +1,16 @@
 There are three types of networks by default. You can see these with docker network ls.
-bridge
-host
+bridge - Single Host. Uses the kernel linux bridge.
+  Example: docker network create -d bridge --subnet 10.0.0.1/24 ps-bridge
+  Note: docker0 is always associated with the default builtin bridge network
+  containers on one bridge cannot talk to containers on another bridge.
+  
+host - 
 none
 
 Overlay lets you create a network for containers to talk to each other over.
+
+
+docker network inspect <network name> lets you see details of the the network.
+You may wish to install bridge-utils with: sudo apt-get bridge-utils This will let you use: brctl show
+
+You can also use docker link show
