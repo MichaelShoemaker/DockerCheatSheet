@@ -1,0 +1,6 @@
+There are three types of networks by default. You can see these with docker network ls.
+bridge
+host
+none
+
+Overlay lets you create a network for containers to talk to each other over.
