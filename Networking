@@ -23,3 +23,19 @@ You can also use docker link show
 
 
 ###MULTI HOST NETWORKING###
+First thing is to enable swarm on all nodes:
+docker swarm init
+
+The above command will output the command you need to run on other nodes to join the swarm.
+
+docker node ls 
+will show you all the nodes in the swarm
+
+This will also create docker_gwbridge and ingerss networks
+
+docker network create -d overlay ps-over
+creates a new overlay network
+
+Other nodes in the swarm will not see this network until we create a container on that node that
+needs to use it.
+
