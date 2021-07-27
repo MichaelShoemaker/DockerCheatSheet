@@ -1,11 +1,11 @@
-Docker container run
+Docker container run</br>
 docker run -p <port on host>:<port in docker container> -v <directory on host>:<directory to mount to on container> ImageName
 
-to run and enter a container at the same time
+To run and enter a container at the same time</br>
 docker run -it ImageName <sh, /bin/bash>
 
-Remove all images
+Remove all images</br>
 docker rmi -f $(docker images -q)
 
-Remove all containers
+Remove all containers</br>
 docker rm -f $(docker ps -a -q)
