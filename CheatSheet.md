@@ -1,8 +1,12 @@
+<h1>Quick Getting Started Commands</h1></br>
 Docker container run:</br>
 docker run -p <port on host>:<port in docker container> -v <directory on host>:<directory to mount to on container> ImageName
 
 To run and enter a container at the same time:</br>
 docker run -it ImageName <sh, /bin/bash>
+  
+Run Container and Remove Container on Exit:</br>
+docker container run --rm -it alpine sh
 
 List all images:</br>
 docker image ls
