@@ -8,6 +8,9 @@ docker run -it ImageName <sh, /bin/bash>
 Run Container and Remove Container on Exit:</br>
 docker container run --rm -it alpine sh
 
+Mount a local volume inside the container</br>
+docker run --rm -it -v ${PWD}:/dir_inside_docker alpine
+  
 List all images:</br>
 docker image ls
   
