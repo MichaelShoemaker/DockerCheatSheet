@@ -3,7 +3,8 @@ FROM <Base image>
 ENV MONGO_MAJOR=3.4\
     MONGO_VERSION=3.4.4\
     MONGO_PACKAGE=mongodb-org
-(Note: The above could have been split into seperate lines like ENV MONGO_VERSION 3.4.4, but by using \'s we only create one image layer)
+#(Note: The above could have been split into seperate lines like ENV MONGO_VERSION 3.4.4
+#, but by using \'s we only create one image layer)
 
 ARG VERSION
 (Defines a varialbe that will be supplied at build time. Does not persist into the container.)
@@ -12,7 +13,10 @@ ARG VERSION
 RUN <["executable","parameter",...]>
 Best Practice:RUN apt-get update &&\   
                   apt-get install -y wget &&\
+#The line below cleans up after package installs
                   rm -rf /var/lib/apt/lists/*
+#no-install-recommends on the same line as an install 
+#will prevent packages that are not dependencies, but are recommended from being installed.
                   
 COPY ["<src>".."<dst>"]
 
