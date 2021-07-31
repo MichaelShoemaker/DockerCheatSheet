@@ -8,6 +8,7 @@ ENV MONGO_MAJOR=3.4\
 ARG VERSION
 (Defines a varialbe that will be supplied at build time. Does not persist into the container.)
 
+#COPY, ADD and RUN add layers.Using && below will result in one layer instead of two.
 RUN <["executable","parameter",...]>
 Best Practice:RUN apt-get update &&\   
                   apt-get install -y wget &&\
@@ -25,3 +26,7 @@ The difference between CMD and Entrypoint is that entrypoint is intended to cons
 So we can do something like
 CMD ["echo","Hello World!"]
 ENTRYPOINT ["sh"]
+
+
+#If you want very small images check out distroless
+#https://github.com/GoogleContainerTools/distroless
