@@ -13,3 +13,7 @@ docker container export -o dump.tar $(docker container ls -lq)
 
 You can then make an image from the archive using:
 docker image import dump.tar newImageName
+
+Docker images have a history associated with them you can see it by using:
+docker image history <image name>
+
