@@ -1,0 +1,15 @@
+You can remove unecessary packages in a container with the something like:
+
+docker container run myimage /bin/bash -c "apt-get purge -y --auto-remove wget build-essentials"
+
+To commit a running container to a new image use:
+docker container commit <container ID>  <new image name>
+
+The image size will actually increase due to running the remove command:
+Docker is copy on write and all the above did was mask out the contet rather than remove it
+
+You can write a conainers file system out with:
+docker container export -o dump.tar $(docker container ls -lq)
+
+You can then make an image from the archive using:
+docker image import dump.tar newImageName
