@@ -1,0 +1,34 @@
+When you run a container the argument you pass replaces CMD in the image.
+
+ENTRYPOINT vs CMD can be confusing - in a properly set up image such as our 
+youtube-dl the command represents an argument list for the entrypoint. By 
+default entrypoint is set as /bin/sh and this is passed if no entrypoint is 
+set. This is why giving path to a script file as CMD works: you’re giving the 
+file as a parameter to /bin/sh.
+
+In addition, there are two ways to set them: exec form and shell form. 
+We’ve been using the exec form where the command itself is executed. 
+In shell form the command that is executed is wrapped with /bin/sh -c - 
+it’s useful when you need to evaluate environment variables in the command 
+like $MYSQL_PASSWORD or similar.
+
+In the shell form the command is provided as a string without brackets. 
+In the exec form the command and it’s arguments are provided as a list 
+(with brackets), see the table below:
+
+Dockerfile	Resulting command
+ENTRYPOINT /bin/ping -c 3
+CMD localhost	/bin/sh -c ‘/bin/ping -c 3’ /bin/sh -c localhost
+ENTRYPOINT [“/bin/ping”,”-c”,”3”]
+CMD localhost	/bin/ping -c 3 /bin/sh -c localhost
+ENTRYPOINT /bin/ping -c 3
+CMD [“localhost”]	/bin/sh -c ‘/bin/ping -c 3’ localhost
+ENTRYPOINT [“/bin/ping”,”-c”,”3”]
+CMD [“localhost”]	/bin/ping -c 3 localhost
+As the command at the end of docker run will be the CMD we want to use ENTRYPOINT 
+to specify what to run, and CMD to specify which command (in our case url) to run.
+
+Most of the time we can ignore ENTRYPOINT when building our images and only use CMD. 
+For example, ubuntu image defaults the ENTRYPOINT to bash so we do not have to worry 
+about it. And it gives us the convenience of allowing us to overwrite the CMD easily, 
+for example, with bash to go inside the container.
